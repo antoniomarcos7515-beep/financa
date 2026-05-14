@@ -1232,7 +1232,7 @@ function setTab(el, tab) {
 
 // ─── MODAL ───────────────────────────────────────────────────────────────
 function openModal() {
-  // set today's date
+  // set todays date
   document.getElementById('fDate').value = new Date().toISOString().split('T')[0];
   document.getElementById('fDesc').value = '';
   document.getElementById('fVal').value = '';
@@ -1765,7 +1765,7 @@ function renderCards() {
     div.onclick = () => openCardDetail(card.id);
 
     if (card.cardType === 'credit') {
-      div.innerHTML = \`
+      div.innerHTML = `
         <div>
           <div class="card-type-badge">💳 Crédito</div>
           <div class="card-name">\${card.name}</div>
@@ -1785,9 +1785,9 @@ function renderCards() {
             <div class="card-flag">\${FLAG_EMOJIS[card.flag] || '💳'}</div>
           </div>
         </div>
-      \`;
+      `;
     } else {
-      div.innerHTML = \`
+      div.innerHTML = `
         <div>
           <div class="card-type-badge">🏦 Débito</div>
           <div class="card-name">\${card.name}</div>
@@ -1800,7 +1800,7 @@ function renderCards() {
           </div>
           <div class="card-flag">\${FLAG_EMOJIS[card.flag] || '💳'}</div>
         </div>
-      \`;
+      `;
     }
     list.appendChild(div);
   });
@@ -1823,7 +1823,7 @@ function openCardDetail(id) {
     const used = card.transactions.reduce((s, t) => s + t.val, 0);
     const available = card.limit - used;
     const usedPct = card.limit > 0 ? Math.min((used / card.limit) * 100, 100) : 0;
-    mini.innerHTML = \`
+    mini.innerHTML = `
       <div class="credit-card" style="background:linear-gradient(135deg,\${colors.from},\${colors.to});color:#fff;margin-bottom:16px;cursor:default;">
         <div>
           <div class="card-type-badge">💳 Crédito · \${FLAG_EMOJIS[card.flag] || ''}</div>
@@ -1837,18 +1837,18 @@ function openCardDetail(id) {
           </div>
         </div>
       </div>
-    \`;
+    `;
     // invoice summary
     const now = new Date();
-    document.getElementById('invoiceSummary').innerHTML = \`
+    document.getElementById('invoiceSummary').innerHTML = `
       <div class="invoice-row"><span class="invoice-label">Limite total</span><span class="invoice-val">\${fmt(card.limit)}</span></div>
       <div class="invoice-row"><span class="invoice-label">Fatura atual</span><span class="invoice-val" style="color:var(--red)">\${fmt(used)}</span></div>
       <div class="invoice-row"><span class="invoice-label">Disponível</span><span class="invoice-val" style="color:var(--accent)">\${fmt(available)}</span></div>
       \${card.closeDay ? '<div class="invoice-row"><span class="invoice-label">Fecha dia</span><span class="invoice-val">' + card.closeDay + '</span></div>' : ''}
       \${card.dueDay ? '<div class="invoice-row"><span class="invoice-label">Vence dia</span><span class="invoice-val">' + card.dueDay + '</span></div>' : ''}
-    \`;
+    `;
   } else {
-    mini.innerHTML = \`
+    mini.innerHTML = `
       <div class="credit-card" style="background:linear-gradient(135deg,\${colors.from},\${colors.to});color:#fff;margin-bottom:16px;cursor:default;">
         <div>
           <div class="card-type-badge">🏦 Débito · \${FLAG_EMOJIS[card.flag] || ''}</div>
@@ -1861,11 +1861,11 @@ function openCardDetail(id) {
           </div>
         </div>
       </div>
-    \`;
-    document.getElementById('invoiceSummary').innerHTML = \`
+    `;
+    document.getElementById('invoiceSummary').innerHTML = `
       <div class="invoice-row"><span class="invoice-label">Saldo atual</span><span class="invoice-val" style="color:var(--accent)">\${fmt(card.balance)}</span></div>
       <div class="invoice-row"><span class="invoice-label">Total de compras</span><span class="invoice-val" style="color:var(--red)">\${fmt(card.transactions.reduce((s,t)=>s+t.val,0))}</span></div>
-    \`;
+    `;
   }
 
   // hide installment for debit
@@ -1977,7 +1977,7 @@ function renderCardTxList(card) {
     const installLabel = t.installments > 1 ? ' (' + t.installCurrent + '/' + t.installments + ')' : '';
     const div = document.createElement('div');
     div.className = 'tx-item';
-    div.innerHTML = \`
+    div.innerHTML = `
       <div class="tx-icon" style="background:\${color}22"><span>\${cat.emoji}</span></div>
       <div class="tx-info">
         <div class="tx-desc">\${t.desc}\${installLabel}</div>
@@ -1987,7 +1987,7 @@ function renderCardTxList(card) {
         <div class="tx-val exp">-\${fmt(t.val)}</div>
       </div>
       <button class="tx-delete" onclick="deleteCardTx(\${t.id})">✕</button>
-    \`;
+    `;
     list.appendChild(div);
   });
 }
